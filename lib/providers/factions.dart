@@ -35,6 +35,6 @@ class Factions with ChangeNotifier {
     //return [..._factions];
     List<String> names = [];
     _factions.forEach((faction) => names.add(faction.name));
-    return names;
+    return [...names];
   }
 }

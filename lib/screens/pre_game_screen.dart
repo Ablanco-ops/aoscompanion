@@ -10,9 +10,11 @@ class PreGameScreen extends StatefulWidget {
 }
 
 class _PreGameScreenState extends State<PreGameScreen> {
+  String _chosenValue='Cities of Sigmar';
   @override
   Widget build(BuildContext context) {
     final factionList = Provider.of<Factions>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Game Settings'),
@@ -24,11 +26,13 @@ class _PreGameScreenState extends State<PreGameScreen> {
               child: Column(
                 children: [
                   ListTile(
-                    title: Text('You'),
+                    title: Center(child: Text('You')),
                     trailing: Icon(Icons.edit),
                   ),
                   ListTile(
-                    title: DropdownButton(
+                    title: Text('Faction: '),
+                    trailing: DropdownButton(
+                      value: _chosenValue,
                       items: factionList.factions
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
@@ -36,8 +40,15 @@ class _PreGameScreenState extends State<PreGameScreen> {
                           child: Text(value),
                         );
                       }).toList(),
+                      onChanged: (String? value){
+                        print(value);
+                        setState(() {
+                          _chosenValue=value!;
+                        });
+                      },
                     ),
-                  )
+                  ),
+
                 ],
               ))
         ],
