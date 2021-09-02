@@ -1,9 +1,19 @@
+import 'package:aoscompanion/providers/factions.dart';
+import 'package:aoscompanion/screens/pre_game_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'screens/home_screen.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => Factions()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,6 +26,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomeScreen(),
+      routes: {
+        PreGameScreen.routeName: (ctx) => PreGameScreen(),
+      },
     );
   }
 }
