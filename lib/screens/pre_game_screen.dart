@@ -1,4 +1,4 @@
-import 'package:aoscompanion/providers/factions.dart';
+import 'package:aoscompanion/providers/games.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,10 +10,12 @@ class PreGameScreen extends StatefulWidget {
 }
 
 class _PreGameScreenState extends State<PreGameScreen> {
-  String _chosenValue='Cities of Sigmar';
+  String _chosenFaction = 'Cities of Sigmar';
+  String _chosenStrategy = 'Sever the Head';
+
   @override
   Widget build(BuildContext context) {
-    final factionList = Provider.of<Factions>(context);
+    final game = Provider.of<Games>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -32,23 +34,41 @@ class _PreGameScreenState extends State<PreGameScreen> {
                   ListTile(
                     title: Text('Faction: '),
                     trailing: DropdownButton(
-                      value: _chosenValue,
-                      items: factionList.factions
+                      value: _chosenFaction,
+                      items: game.factions
                           .map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
                         );
                       }).toList(),
-                      onChanged: (String? value){
+                      onChanged: (String? value) {
                         print(value);
                         setState(() {
-                          _chosenValue=value!;
+                          _chosenFaction = value!;
                         });
                       },
                     ),
                   ),
-
+                  ListTile(
+                    title: Text('Grand Strategy: '),
+                    trailing: DropdownButton(
+                      value: _chosenStrategy,
+                      items: game.strategies
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                      onChanged: (String? value) {
+                        print(value);
+                        setState(() {
+                          _chosenFaction = value!;
+                        });
+                      },
+                    ),
+                  )
                 ],
               ))
         ],

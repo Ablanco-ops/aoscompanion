@@ -1,7 +1,7 @@
 import 'package:aoscompanion/model/faction.dart';
 import 'package:flutter/cupertino.dart';
 
-class Factions with ChangeNotifier {
+class Games with ChangeNotifier {
   List<Faction> _factions = [
     Faction(101, "Cities of Sigmar"),
     Faction(102, "Daughters of Khaine"),
@@ -30,11 +30,26 @@ class Factions with ChangeNotifier {
     Faction(403, "Orruk Warclans"),
     Faction(404, "Sons of Behemat")
   ];
+  Map<int, String> _strategies = {
+    01: "Sever the Head",
+    02: "Hold the Line",
+    03: "Vendetta",
+    04: "Dominating Presence",
+    05: "Beast Master",
+    06: "Prized Sorcery",
+    07: "Pillars of Belief",
+    08: "Predator's Domain"
+  };
 
   List<String> get factions {
-    //return [..._factions];
-    List<String> names = [];
-    _factions.forEach((faction) => names.add(faction.name));
-    return [...names];
+    List<String> factList = [];
+    _factions.forEach((faction) => factList.add(faction.name));
+    return [...factList];
+  }
+
+  List<String> get strategies {
+    List<String> stList = [];
+    _strategies.forEach((key, value) => stList.add(value));
+    return stList;
   }
 }

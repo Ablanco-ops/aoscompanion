@@ -1,4 +1,4 @@
-import 'package:aoscompanion/providers/factions.dart';
+import 'package:aoscompanion/providers/games.dart';
 import 'package:aoscompanion/screens/pre_game_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +9,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => Factions()),
+        ChangeNotifierProvider(create: (context) => Games()),
       ],
       child: MyApp(),
     ),
