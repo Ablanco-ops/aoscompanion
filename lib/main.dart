@@ -1,7 +1,9 @@
-import 'package:aoscompanion/providers/games.dart';
-import 'package:aoscompanion/screens/pre_game_screen.dart';
+import 'package:aoscompanion/providers/game_config.dart';
+import 'package:aoscompanion/screens/game_config_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'screens/home_screen.dart';
 
@@ -9,7 +11,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => Games()),
+        ChangeNotifierProvider(create: (context) => GameConfig()),
       ],
       child: MyApp(),
     ),
@@ -25,9 +27,19 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        AppLocalizations.delegate
+      ],
+      supportedLocales: [
+        const Locale('en', ''),
+        const Locale('es', '')
+      ],
       home: HomeScreen(),
       routes: {
-        PreGameScreen.routeName: (ctx) => PreGameScreen(),
+        GameConfigScreen.routeName: (ctx) => GameConfigScreen(),
       },
     );
   }

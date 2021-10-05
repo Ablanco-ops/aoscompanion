@@ -1,21 +1,21 @@
-import 'package:aoscompanion/providers/games.dart';
+import 'package:aoscompanion/providers/game_config.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class PreGameScreen extends StatefulWidget {
+class GameConfigScreen extends StatefulWidget {
   static const routeName = "/PreGame";
 
   @override
-  _PreGameScreenState createState() => _PreGameScreenState();
+  _GameConfigScreenState createState() => _GameConfigScreenState();
 }
 
-class _PreGameScreenState extends State<PreGameScreen> {
+class _GameConfigScreenState extends State<GameConfigScreen> {
   String _chosenFaction = 'Cities of Sigmar';
   String _chosenStrategy = 'Sever the Head';
 
   @override
   Widget build(BuildContext context) {
-    final game = Provider.of<Games>(context);
+    final game = Provider.of<GameConfig>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -64,7 +64,7 @@ class _PreGameScreenState extends State<PreGameScreen> {
                       onChanged: (String? value) {
                         print(value);
                         setState(() {
-                          _chosenFaction = value!;
+                          _chosenStrategy = value!;
                         });
                       },
                     ),
