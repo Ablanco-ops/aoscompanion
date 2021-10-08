@@ -1,77 +1,34 @@
-import 'package:aoscompanion/providers/game_config.dart';
+import 'package:aoscompanion/common.dart';
+import 'package:aoscompanion/widgets/attacker_config_card.dart';
+import 'package:aoscompanion/widgets/battleplan_card.dart';
+import 'package:aoscompanion/widgets/player_config_card.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class GameConfigScreen extends StatefulWidget {
+class GameConfigScreen extends StatelessWidget {
   static const routeName = "/PreGame";
 
   @override
-  _GameConfigScreenState createState() => _GameConfigScreenState();
-}
-
-class _GameConfigScreenState extends State<GameConfigScreen> {
-  String _chosenFaction = 'Cities of Sigmar';
-  String _chosenStrategy = 'Sever the Head';
-
-  @override
   Widget build(BuildContext context) {
-    final game = Provider.of<GameConfig>(context);
-
     return Scaffold(
+      //resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('Game Settings'),
+        title: Text(AppLocalizations.of(context)!.pre_game_title),
       ),
-      body: Column(
-        children: [
-          Card(
-              margin: const EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  ListTile(
-                    title: Center(child: Text('You')),
-                    trailing: Icon(Icons.edit),
-                  ),
-                  ListTile(
-                    title: Text('Faction: '),
-                    trailing: DropdownButton(
-                      value: _chosenFaction,
-                      items: game.factions
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (String? value) {
-                        print(value);
-                        setState(() {
-                          _chosenFaction = value!;
-                        });
-                      },
-                    ),
-                  ),
-                  ListTile(
-                    title: Text('Grand Strategy: '),
-                    trailing: DropdownButton(
-                      value: _chosenStrategy,
-                      items: game.strategies
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
-                      onChanged: (String? value) {
-                        print(value);
-                        setState(() {
-                          _chosenStrategy = value!;
-                        });
-                      },
-                    ),
-                  )
-                ],
-              ))
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            GameConfigCard(AppLocalizations.of(context)!.you),
+            GameConfigCard(AppLocalizations.of(context)!.opponent),
+            BattleplanCard(),
+            AttackerConfigCard(),
+            ElevatedButton(
+              onPressed: () {},
+              child: Text(
+                AppLocalizations.of(context)!.start,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -21,9 +21,16 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "faction": MessageLookupByLibrary.simpleMessage("Faction"),
+        "attacker": MessageLookupByLibrary.simpleMessage("Attacker"),
+        "battleplan": MessageLookupByLibrary.simpleMessage("Battleplan"),
+        "faction": MessageLookupByLibrary.simpleMessage("Faction:"),
+        "grand_strategy":
+            MessageLookupByLibrary.simpleMessage("Grand Strategy:"),
+        "opponent": MessageLookupByLibrary.simpleMessage("Opponent"),
         "pre_game_title":
             MessageLookupByLibrary.simpleMessage("Game Configuration"),
+        "realm": MessageLookupByLibrary.simpleMessage("Realm:"),
+        "start": MessageLookupByLibrary.simpleMessage("Start Battle"),
         "title": MessageLookupByLibrary.simpleMessage("AOS Companion"),
         "you": MessageLookupByLibrary.simpleMessage("You")
       };

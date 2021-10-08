@@ -1,6 +1,6 @@
 class GrandStrategy{
   final int index;
-  final String name;
+  final List<String> name;
 
   GrandStrategy(this.index, this.name);
 }

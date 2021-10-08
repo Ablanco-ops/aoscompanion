@@ -1,6 +1,12 @@
 {
-  "faction": "Facción",
+  "attacker": "Atacante",
+  "battleplan": "Battleplan",
+  "faction": "Facción::",
+  "grand_strategy": "Gran Estrategia:",
+  "opponent": "Oponente",
   "pre_game_title": "Configuración de la partida",
+  "realm": "Reino:",
+  "start": "Empezar Batalla",
   "title": "AOS Companion",
   "you": "Tú"
 }

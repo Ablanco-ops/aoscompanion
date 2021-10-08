@@ -1,5 +1,7 @@
+import 'package:aoscompanion/model/battleplan.dart';
 import 'package:aoscompanion/model/faction.dart';
 import 'package:aoscompanion/model/grand_strategy.dart';
+import 'package:aoscompanion/model/realm.dart';
 import 'package:flutter/cupertino.dart';
 
 class GameConfig with ChangeNotifier {
@@ -32,26 +34,48 @@ class GameConfig with ChangeNotifier {
     Faction(404, "Sons of Behemat")
   ];
   List<GrandStrategy> _strategies = [
-    GrandStrategy(01, "Beast Master"),
-    GrandStrategy(02, "Dominating Presence"),
-    GrandStrategy(03, "Hold the Line"),
-    GrandStrategy(04, "Pillars of Belief"),
-    GrandStrategy(05, "Predator's Domain"),
-    GrandStrategy(06, "Prized Sorcery"),
-    GrandStrategy(07, "Sever the Head"),
-    GrandStrategy(08, "Vendetta"),
+    GrandStrategy(01, ["Beast Master"]),
+    GrandStrategy(02, ["Dominating Presence"]),
+    GrandStrategy(03, ["Hold the Line"]),
+    GrandStrategy(04, ["Pillars of Belief"]),
+    GrandStrategy(05, ["Predator's Domain"]),
+    GrandStrategy(06, ["Prized Sorcery"]),
+    GrandStrategy(07, ["Sever the Head"]),
+    GrandStrategy(08, ["Vendetta"]),
+  ];
+  List<Realm> _realms =[
+    Realm(01,"Ghur")
+  ];
+  
+  List<BattlePlan> _battlePlans=[
+    BattlePlan(111, "Marking Territory"),
+    BattlePlan(112, "Savage Gains"),
+    BattlePlan(113, "First Blood"),
+    BattlePlan(114, "Power Struggle"),
+    BattlePlan(115, "Survival of the Fittest"),
+    BattlePlan(116, "Tectonic Interference"),
+    BattlePlan(121, "Apex Predators"),
+    BattlePlan(122, "The Vice"),
+    BattlePlan(123, "Tooth and Nail"),
+    BattlePlan(124, "Feral Foray"),
+    BattlePlan(125, "Power in Numbers"),
+    BattlePlan(126, "The Veins of Ghur"),
   ];
 
-  List<String> get factions {
-    List<String> factList = [];
-    _factions.forEach((faction) => factList.add(faction.name));
-    return [...factList];
+  List<Realm> get realms {
+    return _realms;
   }
 
-  List<String> get strategies {
-    List<String> stList = [];
-    _strategies.forEach((strategy) => stList.add(strategy.name));
-    return [...stList];
-    //return [..._strategies];
+  List<BattlePlan> get battlePlans{
+    return _battlePlans;
   }
+
+  List<Faction> get factions {
+    return _factions;
+  }
+
+  List<GrandStrategy> get strategies {
+    return [..._strategies];
+  }
+
 }

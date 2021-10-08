@@ -50,11 +50,51 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Faction`
+  /// `Attacker`
+  String get attacker {
+    return Intl.message(
+      'Attacker',
+      name: 'attacker',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Battleplan`
+  String get battleplan {
+    return Intl.message(
+      'Battleplan',
+      name: 'battleplan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Faction:`
   String get faction {
     return Intl.message(
-      'Faction',
+      'Faction:',
       name: 'faction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grand Strategy:`
+  String get grand_strategy {
+    return Intl.message(
+      'Grand Strategy:',
+      name: 'grand_strategy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Opponent`
+  String get opponent {
+    return Intl.message(
+      'Opponent',
+      name: 'opponent',
       desc: '',
       args: [],
     );
@@ -65,6 +105,26 @@ class S {
     return Intl.message(
       'Game Configuration',
       name: 'pre_game_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Realm:`
+  String get realm {
+    return Intl.message(
+      'Realm:',
+      name: 'realm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Battle`
+  String get start {
+    return Intl.message(
+      'Start Battle',
+      name: 'start',
       desc: '',
       args: [],
     );

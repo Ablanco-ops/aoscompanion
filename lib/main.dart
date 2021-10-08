@@ -1,4 +1,4 @@
-import 'package:aoscompanion/providers/game_config.dart';
+import 'package:aoscompanion/providers/game_config_repository.dart';
 import 'package:aoscompanion/screens/game_config_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

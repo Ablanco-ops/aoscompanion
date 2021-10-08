@@ -1,6 +1,13 @@
 {
-  "faction": "Faction",
+  "attacker": "Attacker",
+  "battleplan": "Battleplan",
+  "faction": "Faction:",
+  "grand_strategy": "Grand Strategy:",
+  "opponent": "Opponent",
   "pre_game_title": "Game Configuration",
+  "realm": "Realm:",
+  "start": "Start Battle",
   "title": "AOS Companion",
   "you": "You"
+
 }
