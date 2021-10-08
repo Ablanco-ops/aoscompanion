@@ -2,10 +2,9 @@ import 'package:aoscompanion/model/battleplan.dart';
 import 'package:aoscompanion/model/faction.dart';
 import 'package:aoscompanion/model/grand_strategy.dart';
 import 'package:aoscompanion/model/realm.dart';
-import 'package:flutter/cupertino.dart';
 
-class GameConfig with ChangeNotifier {
-  List<Faction> _factions = [
+class GameConfigRepository {
+  static List<Faction> _factions = [
     Faction(101, "Cities of Sigmar"),
     Faction(102, "Daughters of Khaine"),
     Faction(103, "Fyreslayers"),
@@ -33,7 +32,7 @@ class GameConfig with ChangeNotifier {
     Faction(403, "Orruk Warclans"),
     Faction(404, "Sons of Behemat")
   ];
-  List<GrandStrategy> _strategies = [
+  static List<GrandStrategy> _strategies = [
     GrandStrategy(01, ["Beast Master"]),
     GrandStrategy(02, ["Dominating Presence"]),
     GrandStrategy(03, ["Hold the Line"]),
@@ -43,11 +42,9 @@ class GameConfig with ChangeNotifier {
     GrandStrategy(07, ["Sever the Head"]),
     GrandStrategy(08, ["Vendetta"]),
   ];
-  List<Realm> _realms =[
-    Realm(01,"Ghur")
-  ];
-  
-  List<BattlePlan> _battlePlans=[
+  static List<Realm> _realms = [Realm(01, "Ghur")];
+
+  static List<BattlePlan> _battlePlans = [
     BattlePlan(111, "Marking Territory"),
     BattlePlan(112, "Savage Gains"),
     BattlePlan(113, "First Blood"),
@@ -62,20 +59,11 @@ class GameConfig with ChangeNotifier {
     BattlePlan(126, "The Veins of Ghur"),
   ];
 
-  List<Realm> get realms {
-    return _realms;
-  }
+  static List<Realm> get realms => _realms;
 
-  List<BattlePlan> get battlePlans{
-    return _battlePlans;
-  }
+  static List<BattlePlan> get battlePlans => _battlePlans;
 
-  List<Faction> get factions {
-    return _factions;
-  }
+  static List<Faction> get factions => _factions;
 
-  List<GrandStrategy> get strategies {
-    return [..._strategies];
-  }
-
+  static List<GrandStrategy> get strategies => _strategies;
 }

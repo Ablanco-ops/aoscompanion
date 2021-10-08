@@ -1,16 +1,16 @@
 import 'package:aoscompanion/model/faction.dart';
 import 'package:aoscompanion/model/grand_strategy.dart';
+import 'package:aoscompanion/model/player.dart';
 import 'package:aoscompanion/providers/game_config_repository.dart';
-import 'package:provider/provider.dart';
+import 'package:aoscompanion/providers/pre_game_settings.dart';
 
 import '../common.dart';
 import '../decoration.dart';
 
 class GameConfigCard extends StatefulWidget {
   final String name;
-
-
-  GameConfigCard(this.name);
+  final bool you;
+  GameConfigCard(this.name, this.you);
 
   @override
   State<GameConfigCard> createState() => _GameConfigCardState();
@@ -20,10 +20,21 @@ class _GameConfigCardState extends State<GameConfigCard> {
   Faction? _chosenFaction;
   GrandStrategy? _chosenStrategy;
   String? newName;
+  PreGameSettings settings = PreGameSettings();
+
+  void setPlayer(Player player){
+    if (widget.you){
+      settings.player=player;
+    }
+    else{
+      settings.opponent=player;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final game = Provider.of<GameConfig>(context, listen: false);
+    var player= Player(playerName: newName ??=widget.name, faction: _chosenFaction ??= GameConfigRepository.factions[0],
+        grandStrategy: _chosenStrategy ??= GameConfigRepository.strategies[0]);
 
     return Card(
       margin:  gameConfigScreenCardMargin,
@@ -40,6 +51,7 @@ class _GameConfigCardState extends State<GameConfigCard> {
                 onChanged: (value) {
                   setState(() {
                     newName = value;
+                    setPlayer(player);
                     debugPrint(newName);
                   });
                 },
@@ -49,9 +61,9 @@ class _GameConfigCardState extends State<GameConfigCard> {
           ListTile(
             title: Text(AppLocalizations.of(context)!.faction),
             trailing: DropdownButton(
-              value: _chosenFaction ??= game.factions[0],
+              value: _chosenFaction ??= GameConfigRepository.factions[0],
               items:
-                  game.factions.map<DropdownMenuItem<Faction>>((Faction value) {
+                  GameConfigRepository.factions.map<DropdownMenuItem<Faction>>((Faction value) {
                 return DropdownMenuItem<Faction>(
                   value: value,
                   child: Text(value.name),
@@ -61,6 +73,7 @@ class _GameConfigCardState extends State<GameConfigCard> {
                 debugPrint(value!.name);
                 setState(() {
                   _chosenFaction = value;
+                  setPlayer(player);
                 });
               },
             ),
@@ -68,8 +81,8 @@ class _GameConfigCardState extends State<GameConfigCard> {
           ListTile(
             title: Text(AppLocalizations.of(context)!.grand_strategy),
             trailing: DropdownButton(
-              value: _chosenStrategy ??= game.strategies[0],
-              items: game.strategies
+              value: _chosenStrategy ??= GameConfigRepository.strategies[0],
+              items: GameConfigRepository.strategies
                   .map<DropdownMenuItem<GrandStrategy>>((GrandStrategy value) {
                 return DropdownMenuItem<GrandStrategy>(
                   value: value,
@@ -80,6 +93,7 @@ class _GameConfigCardState extends State<GameConfigCard> {
                 debugPrint(value!.name[0]);
                 setState(() {
                   _chosenStrategy = value;
+                  setPlayer(player);
                 });
               },
             ),

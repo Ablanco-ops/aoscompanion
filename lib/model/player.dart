@@ -10,6 +10,10 @@ class Player{
   bool grandStrategyDone;
   late List<Turn> listScoreTurn;
 
-
   Player({required this.playerName, required this.faction, required this.grandStrategy, this.grandStrategyDone=false});
+
+  @override
+  String toString() {
+    return 'Player{playerName: $playerName, faction: $faction, grandStrategy: $grandStrategy, grandStrategyDone: $grandStrategyDone}';
+  }
 }

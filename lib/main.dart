@@ -1,20 +1,19 @@
-import 'package:aoscompanion/providers/game_config_repository.dart';
 import 'package:aoscompanion/screens/game_config_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'screens/home_screen.dart';
 
 void main() {
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => GameConfig()),
-      ],
-      child: MyApp(),
-    ),
+    // MultiProvider(
+    //   providers: [
+    //     ChangeNotifierProvider(create: (context) => GameConfigRepository()),
+    //   ],
+    //   child: MyApp(),
+    // ),
+    MyApp(),
   );
 }
 
