@@ -70,6 +70,16 @@ class S {
     );
   }
 
+  /// `Battlepack`
+  String get battlepack {
+    return Intl.message(
+      'Battlepack',
+      name: 'battlepack',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Faction:`
   String get faction {
     return Intl.message(

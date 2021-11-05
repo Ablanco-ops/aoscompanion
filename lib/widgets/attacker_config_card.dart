@@ -1,5 +1,6 @@
 import 'package:aoscompanion/decoration.dart';
 import 'package:aoscompanion/providers/pre_game_settings.dart';
+import 'package:provider/provider.dart';
 
 import '../common.dart';
 
@@ -13,12 +14,13 @@ class _AttackerConfigCardState extends State<AttackerConfigCard> {
 
   @override
   Widget build(BuildContext context) {
+    final settings = Provider.of<PreGameSettings>(context);
     return Card(
       margin: gameConfigScreenCardMargin,
       child: ListTile(
         title: Text(AppLocalizations.of(context)!.attacker),
         subtitle: Container(
-          width: 100,
+          //width: 100,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -29,7 +31,7 @@ class _AttackerConfigCardState extends State<AttackerConfigCard> {
                   onChanged: (bool? value) {
                     setState(() {
                       _attacker = value!;
-                      PreGameSettings().attacker=value;
+                      settings.attacker=value;
                       print(_attacker);
                     });
                   }),
@@ -40,7 +42,7 @@ class _AttackerConfigCardState extends State<AttackerConfigCard> {
                   onChanged: (bool? value) {
                     setState(() {
                       _attacker = value!;
-                      PreGameSettings().attacker=value;
+                      settings.attacker=value;
                       print(_attacker);
                     });
                   }),

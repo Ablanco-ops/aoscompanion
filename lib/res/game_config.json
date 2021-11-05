@@ -1,0 +1,44 @@
+{
+  "factions": [
+    {
+      "index": 101,
+      "name": "Cities of Sigmar"
+    },
+    {
+      "index": 102,
+      "name": "Daughters of Khaine"
+    },
+    {
+      "index": 103,
+      "name": "Fyreslayers"
+    },
+    {
+      "index": 104,
+      "name": "Idoneth Deepkin"
+    },
+    {
+      "index": 105,
+      "name": "Kharadron Overlords"
+    },
+    {
+      "index": 106,
+      "name": "Lumineth Realmlords"
+    },
+    {
+      "index": 107,
+      "name": "Seraphon"
+    },
+    {
+      "index": 108,
+      "name": "Strormcast Eternals"
+    },
+    {
+      "index": 109,
+      "name": "Sylvaneth"
+    }
+
+  ]
+
+
+
+}

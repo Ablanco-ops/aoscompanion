@@ -3,4 +3,9 @@ class Realm{
   final String name;
 
   Realm(this.index, this.name);
+
+  @override
+  String toString() {
+    return 'Realm{index: $index, name: $name}';
+  }
 }

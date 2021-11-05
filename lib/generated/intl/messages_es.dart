@@ -22,8 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "attacker": MessageLookupByLibrary.simpleMessage("Atacante"),
+        "battlepack": MessageLookupByLibrary.simpleMessage("Pack de misiones"),
         "battleplan": MessageLookupByLibrary.simpleMessage("Battleplan"),
-        "faction": MessageLookupByLibrary.simpleMessage("Facción::"),
+        "faction": MessageLookupByLibrary.simpleMessage("Facción:"),
         "grand_strategy":
             MessageLookupByLibrary.simpleMessage("Gran Estrategia:"),
         "opponent": MessageLookupByLibrary.simpleMessage("Oponente"),
