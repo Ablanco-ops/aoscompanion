@@ -17,10 +17,13 @@ class _BattleplanCardState extends State<BattleplanCard> {
   BattlePlan? _chosenBattlePlan;
   Battlepack? _chosenBattlepack;
 
+
   //PreGameSettings settings= PreGameSettings();
   @override
   Widget build(BuildContext context) {
     final settings= Provider.of<PreGameSettings>(context);
+    Locale locale= Localizations.localeOf(context);
+    print(locale);
     //settings.battlePack?? settings.battlepacks[0];
     return Card(
       margin:  gameConfigScreenCardMargin,
@@ -75,7 +78,7 @@ class _BattleplanCardState extends State<BattleplanCard> {
                     .map<DropdownMenuItem<BattlePlan>>((BattlePlan value) {
                   return DropdownMenuItem(
                     value: value,
-                    child: Text((value.index%100).toString()+" "+value.name),
+                    child: Text((value.index%100).toString()+" "+value.name[0]),
                   );
                 }).toList()),
           )

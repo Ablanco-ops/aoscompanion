@@ -1,12 +1,21 @@
+import 'package:aoscompanion/model/turn_objective.dart';
+
 class BattlePlan{
   final int index;
-  final String name;
-  final String battlepack;
+  final List<String> name;
 
-  BattlePlan(this.index, this.name, this.battlepack);
+  final List<TurnObjective> objectiveList;
+
+
+
+  BattlePlan(this.index, this.name, {List<TurnObjective>? objectiveList}): objectiveList= objectiveList??[
+    TurnObjective(["One objective", "Un objetivo"], 1, 1),
+    TurnObjective(["Two objectives", "Dos objetivos"], 1, 1),
+    TurnObjective(["More objectives", "Más objetivo"], 1, 1)
+  ];
 
   @override
   String toString() {
-    return 'BattlePlan{index: $index, name: $name, battlepack: $battlepack}';
+    return 'BattlePlan{index: $index, name: $name}';
   }
 }

@@ -4,19 +4,25 @@ import 'package:aoscompanion/model/faction.dart';
 import 'package:aoscompanion/model/grand_strategy.dart';
 import 'package:aoscompanion/model/player.dart';
 import 'package:aoscompanion/model/realm.dart';
+import 'package:aoscompanion/model/turn_objective.dart';
 
 import '../common.dart';
 
 class PreGameSettings with ChangeNotifier {
-
-  Realm realm=Realm(01, "Ghur");
+  Realm realm = Realm(01, "Ghur");
   Battlepack battlePack = Battlepack(11, ["Contest of Generals"]);
-  BattlePlan battlePlan = BattlePlan(1101, "Frontal Assault", "Contest of Generals");
-  Player player = Player(playerName: "You", faction: Faction(101, "Cities of Sigmar"), grandStrategy: GrandStrategy(01, ["Beast Master"]));
-  Player opponent = Player(playerName: "Opponent", faction: Faction(101, "Cities of Sigmar"), grandStrategy: GrandStrategy(01, ["Beast Master"]));
-  bool attacker=false;
+  BattlePlan battlePlan = BattlePlan(1101, ["Frontal Assault"]);
+  Player player = Player(
+      playerName: "You",
+      faction: Faction(101, "Cities of Sigmar"),
+      grandStrategy: GrandStrategy(01, ["Beast Master"]));
+  Player opponent = Player(
+      playerName: "Opponent",
+      faction: Faction(101, "Cities of Sigmar"),
+      grandStrategy: GrandStrategy(01, ["Beast Master"]));
+  bool attacker = false;
 
-  static List<Faction> _factions = [
+  List<Faction> _factions = [
     Faction(101, "Cities of Sigmar"),
     Faction(102, "Daughters of Khaine"),
     Faction(103, "Fyreslayers"),
@@ -62,30 +68,42 @@ class PreGameSettings with ChangeNotifier {
   ];
 
   List<BattlePlan> _battlePlans = [
-    BattlePlan(1101, "Frontal Assault", "Contest of Generals"),
-    BattlePlan(1102, "Burn and Pillage", "Contest of Generals"),
-    BattlePlan(1103, "Rising Power", "Contest of Generals"),
-    BattlePlan(1211, "Marking Territory", "Pitched Battles 2021"),
-    BattlePlan(1212, "Savage Gains", "Pitched Battles 2021"),
-    BattlePlan(1213, "First Blood", "Pitched Battles 2021"),
-    BattlePlan(1214, "Power Struggle", "Pitched Battles 2021"),
-    BattlePlan(1215, "Survival of the Fittest", "Pitched Battles 2021"),
-    BattlePlan(1216, "Tectonic Interference", "Pitched Battles 2021"),
-    BattlePlan(1221, "Apex Predators", "Pitched Battles 2021"),
-    BattlePlan(1222, "The Vice", "Pitched Battles 2021"),
-    BattlePlan(1223, "Tooth and Nail", "Pitched Battles 2021"),
-    BattlePlan(1224, "Feral Foray", "Pitched Battles 2021"),
-    BattlePlan(1225, "Power in Numbers", "Pitched Battles 2021"),
-    BattlePlan(1226, "The Veins of Ghur", "Pitched Battles 2021"),
+    BattlePlan(1101, ["Frontal Assault"]),
+    BattlePlan(1102, ["Burn and Pillage"]),
+    BattlePlan(1103, ["Rising Power"]),
+    BattlePlan(1211, ["Marking Territory"], objectiveList: []),
+    BattlePlan(1212, ["Savage Gains"]),
+    BattlePlan(1213, ["First Blood"]),
+    BattlePlan(1214, [
+      "Power Struggle"
+    ], objectiveList: [
+      TurnObjective(["One Objective 2+ turns", "Un Objetivo 2+ turnos"], 1, 2),
+      TurnObjective(
+          ["Two Objectives 2+ turns", "Dos Objetivos 2+ turnos"], 1, 2),
+      TurnObjective(["More objectives", "Más objetivo"], 1, 1)
+    ]),
+    BattlePlan(1215, ["Survival of the Fittest"]),
+    BattlePlan(1216, [
+      "Tectonic Interference"
+    ], objectiveList: [
+      TurnObjective(["Alpha objective", "Objetivo Alfa"], 2, 1),
+      TurnObjective(["Beta objectives", "Objetivo Beta"], 1, 1)
+    ]),
+    BattlePlan(1221, ["Apex Predators"]),
+    BattlePlan(1222, ["The Vice"]),
+    BattlePlan(1223, ["Tooth and Nail"]),
+    BattlePlan(1224, ["Feral Foray"]),
+    BattlePlan(1225, ["Power in Numbers"]),
+    BattlePlan(1226, ["The Veins of Ghur"]),
   ];
-
-
 
   List<Realm> get realms => _realms;
 
   List<Battlepack> get battlepacks => _battlePacks;
 
-  List<BattlePlan> get battlePlans => _battlePlans.where((plan) => plan.battlepack == battlePack.name[0]).toList();
+  List<BattlePlan> get battlePlans => _battlePlans
+      .where((plan) => (plan.index / 100).truncate() == battlePack.index)
+      .toList();
 
   List<Faction> get factions => _factions;
 
@@ -97,10 +115,10 @@ class PreGameSettings with ChangeNotifier {
   }
 
 // Realm realm=PreGameSettings.realms[0];
-  // BattlePlan battlePlan=PreGameSettings.battlePlans[0];
-  // Player player=Player(playerName: "You", faction: PreGameSettings.factions[0], grandStrategy: PreGameSettings.strategies[0]);
-  // Player opponent=Player(playerName: "Opponent", faction: PreGameSettings.factions[0], grandStrategy: PreGameSettings.strategies[0]);
-  // bool attacker=false;
-  //
+// BattlePlan battlePlan=PreGameSettings.battlePlans[0];
+// Player player=Player(playerName: "You", faction: PreGameSettings.factions[0], grandStrategy: PreGameSettings.strategies[0]);
+// Player opponent=Player(playerName: "Opponent", faction: PreGameSettings.factions[0], grandStrategy: PreGameSettings.strategies[0]);
+// bool attacker=false;
+//
 
 }
