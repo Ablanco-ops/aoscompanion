@@ -9,6 +9,7 @@ import 'package:aoscompanion/model/turn_objective.dart';
 import '../common.dart';
 
 class PreGameSettings with ChangeNotifier {
+  int numberTurns=5;
   Realm realm = Realm(01, "Ghur");
   Battlepack battlePack = Battlepack(11, ["Contest of Generals"]);
   BattlePlan battlePlan = BattlePlan(1101, ["Frontal Assault"]);
@@ -77,17 +78,17 @@ class PreGameSettings with ChangeNotifier {
     BattlePlan(1214, [
       "Power Struggle"
     ], objectiveList: [
-      TurnObjective(["One Objective 2+ turns", "Un Objetivo 2+ turnos"], 1, 2),
+      TurnObjective(["One Objective 2+ turns", "Un Objetivo 2+ turnos"], 1, 2,0),
       TurnObjective(
-          ["Two Objectives 2+ turns", "Dos Objetivos 2+ turnos"], 1, 2),
-      TurnObjective(["More objectives", "Más objetivo"], 1, 1)
+          ["Two Objectives 2+ turns", "Dos Objetivos 2+ turnos"], 1, 2,1),
+      TurnObjective(["More objectives", "Más objetivo"], 1, 1,2)
     ]),
     BattlePlan(1215, ["Survival of the Fittest"]),
     BattlePlan(1216, [
       "Tectonic Interference"
     ], objectiveList: [
-      TurnObjective(["Alpha objective", "Objetivo Alfa"], 2, 1),
-      TurnObjective(["Beta objectives", "Objetivo Beta"], 1, 1)
+      TurnObjective(["Alpha objective", "Objetivo Alfa"], 2, 1,0),
+      TurnObjective(["Beta objectives", "Objetivo Beta"], 1, 1,1)
     ]),
     BattlePlan(1221, ["Apex Predators"]),
     BattlePlan(1222, ["The Vice"]),

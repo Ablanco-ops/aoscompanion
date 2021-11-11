@@ -1,5 +1,8 @@
+
 import 'package:aoscompanion/providers/pre_game_settings.dart';
+import 'package:aoscompanion/providers/score.dart';
 import 'package:aoscompanion/screens/game_config_screen.dart';
+import 'package:aoscompanion/screens/score_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -12,6 +15,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => PreGameSettings()),
+        ChangeNotifierProvider(create: (context) => Score())
       ],
       child: MyApp(),
     ),
@@ -42,6 +46,7 @@ class MyApp extends StatelessWidget {
       home: HomeScreen(),
       routes: {
         GameConfigScreen.routeName: (ctx) => GameConfigScreen(),
+        ScoreScreen.routeName: (ctx) => ScoreScreen()
       },
     );
   }

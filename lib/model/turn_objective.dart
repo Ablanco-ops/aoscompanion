@@ -1,7 +1,9 @@
 class TurnObjective{
-  List<String> title;
-  int value;
-  int activeTurn;
+  final int index;
+  final List<String> title;
+  final int value;
+  final int activeTurn;
+  bool done;
 
-  TurnObjective(this.title, this.value, this.activeTurn);
+  TurnObjective(this.title, this.value, this.activeTurn, this.index, {this.done=false});
 }
