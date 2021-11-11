@@ -7,8 +7,8 @@ import '../common.dart';
 
 class PlayerScoreCard extends StatefulWidget {
   final TurnScore scoreTurn;
-
   PlayerScoreCard(this.scoreTurn);
+
 
   @override
   _PlayerScoreCardState createState() => _PlayerScoreCardState();
@@ -19,16 +19,15 @@ class _PlayerScoreCardState extends State<PlayerScoreCard> {
   Widget build(BuildContext context) {
     final score = Provider.of<Score>(context);
     final settings = Provider.of<PreGameSettings>(context);
-
     return Container(
-      height: 200,
+
       child: Column(
         children: [
           Text(settings.player.playerName),
           Column(
             children: widget.scoreTurn.playerObjectives
                 .map((objective) => ListTile(
-                      leading: Text(objective.title[0]),
+                      title: Text(objective.title[0]),
                       trailing: Checkbox(
                         onChanged: (bool? value) {
                           var turn = widget.scoreTurn.turnNumber;
@@ -47,9 +46,9 @@ class _PlayerScoreCardState extends State<PlayerScoreCard> {
             child: ListTile(
               leading: PopupMenuButton<BattleTactic>(
                 child: Icon(Icons.edit),
-                onSelected: (BattleTactic bt)=>score.selectBattleTactic(selPlayer.PLAYER, bt.index),
+                onSelected: (BattleTactic bt)=>score.selectBattleTactic(selPlayer.PLAYER, bt,widget.scoreTurn.turnNumber),
                 itemBuilder: (BuildContext context) {
-                  //score.addPreviousBt(selPlayer.PLAYER,widget.scoreTurn.turnNumber-1);
+                  score.addPreviousBt(selPlayer.PLAYER,widget.scoreTurn.turnNumber);
                     return score.playerBattleTacticList
                         .map<PopupMenuItem<BattleTactic>>((bt) => PopupMenuItem(
                               child: Text(bt.name[0]),
@@ -57,6 +56,8 @@ class _PlayerScoreCardState extends State<PlayerScoreCard> {
                             ))
                         .toList();}
               ),
+              title: Text(widget.scoreTurn.playerBattleTactic.name[0]),
+              trailing: Checkbox(value: widget.scoreTurn.playerBtDone, onChanged: (bool? value) {  },),
             ),
           )
         ],

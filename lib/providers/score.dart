@@ -27,7 +27,6 @@ class Score with ChangeNotifier {
           TurnScore(i, battleplan.objectiveList, battleplan.objectiveList));
     turnsScoreList = list;
     setInitialBattleTacticList((battleplan.index / 100).truncate());
-    print(_playerBattleTacticList);
   }
 
   void setScorePoint(int turn, int index) {
@@ -45,27 +44,33 @@ class Score with ChangeNotifier {
         .toList();
   }
 
-  void selectBattleTactic(selPlayer player, int index) {
+  void selectBattleTactic(selPlayer player, BattleTactic bt, int turn) {
     if (player == selPlayer.PLAYER) {
-      _playerBattleTacticList.removeWhere((bt) => bt.index == index);
+      turnsScoreList[turn - 1].playerBattleTactic = bt;
+      _playerBattleTacticList.remove(bt);
     } else {
-      _opponentBattleTacticList.removeWhere((bt) => bt.index == index);
+      turnsScoreList[turn - 1].opponentBattleTactic = bt;
+      _opponentBattleTacticList.remove(bt);
     }
+    notifyListeners();
   }
 
-  List<BattleTactic> get opponentBattleTacticList => _opponentBattleTacticList;
+  List<BattleTactic> get opponentBattleTacticList =>
+      _opponentBattleTacticList.where((bt) => bt.index != 0).toList();
 
-  List<BattleTactic> get playerBattleTacticList => _playerBattleTacticList;
+  List<BattleTactic> get playerBattleTacticList =>
+      _playerBattleTacticList.where((bt) => bt.index != 0).toList();
 
   void addPreviousBt(selPlayer player, int turn) {
+    var playerBt = turnsScoreList[turn - 1].playerBattleTactic;
+    var opponentBt = turnsScoreList[turn - 1].opponentBattleTactic;
+
     if (player == selPlayer.PLAYER) {
-      if (turnsScoreList[turn].playerBattleTactic != BattleTactic(0, [])) {
-        _playerBattleTacticList.add(turnsScoreList[turn].playerBattleTactic);
-      }
+      if (!_playerBattleTacticList.contains(playerBt))
+        _playerBattleTacticList.add(playerBt);
     } else {
-      if (turnsScoreList[turn].opponentBattleTactic != BattleTactic(0, [])) {
-        _opponentBattleTacticList.add(turnsScoreList[turn].playerBattleTactic);
-      }
+      if (_opponentBattleTacticList.contains(opponentBt))
+        _opponentBattleTacticList.add(opponentBt);
     }
   }
 }
