@@ -1,7 +1,5 @@
-import 'package:aoscompanion/model/battle_tactic.dart';
+import 'package:aoscompanion/decoration.dart';
 import 'package:aoscompanion/model/turn_score.dart';
-import 'package:aoscompanion/providers/pre_game_settings.dart';
-import 'package:aoscompanion/providers/score.dart';
 import 'package:aoscompanion/widgets/player_score.dart';
 
 import '../common.dart';
@@ -13,14 +11,18 @@ class ScoreCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final score = Provider.of<Score>(context);
-    final settings = Provider.of<PreGameSettings>(context);
+
     return Container(
       child: Column(
         children: [
-          PlayerScore(scoreTurn, selPlayer.PLAYER),
+          Container(
+            margin: gameConfigScreenCardMargin,
+              color: redAOS, child: PlayerScore(scoreTurn, selPlayer.PLAYER)),
           SizedBox(height: 15),
-          PlayerScore(scoreTurn, selPlayer.OPPONENT),
+          Container(
+              margin: gameConfigScreenCardMargin,
+              color: blueAOS,
+              child: PlayerScore(scoreTurn, selPlayer.OPPONENT)),
         ],
       ),
     );

@@ -23,6 +23,10 @@ class Score with ChangeNotifier {
   late List<BattleTactic> _opponentBattleTacticList;
 
   void buildScore(BattlePlan battleplan) {
+    numPlayerBtDone = 0;
+    numOpponentBtDone = 0;
+    playerScore = 0;
+    opponentScore = 0;
     List<TurnScore> list = [];
     for (int i = 1; i <= turns; i++)
       list.add(TurnScore(i, battleplan.objectiveList));

@@ -19,8 +19,10 @@ class ScoreScreen extends StatelessWidget {
           title: Text(
               "${settings.player.playerName} ${score.playerScore} - ${score.opponentScore} ${settings.opponent.playerName}")),
       body: Container(
+        //color: kakiAOS,
         margin: gameConfigScreenCardMargin,
         child: Card(
+          color:  kakiAOS,
           elevation: 5,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
           child: DefaultTabController(

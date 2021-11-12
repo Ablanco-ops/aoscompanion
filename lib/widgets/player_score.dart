@@ -28,9 +28,12 @@ class PlayerScore extends StatelessWidget {
     }
     return Column(
       children: [
-        Text(chosenPlayer == selPlayer.PLAYER
-            ? settings.player.playerName
-            : settings.opponent.playerName),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(chosenPlayer == selPlayer.PLAYER
+              ? settings.player.playerName
+              : settings.opponent.playerName),
+        ),
         Column(
           children: scoreTurn.objectivesList
               .map((objective) => ListTile(
@@ -47,30 +50,28 @@ class PlayerScore extends StatelessWidget {
                   ))
               .toList(),
         ),
-        Container(
-          child: ListTile(
-            leading: PopupMenuButton<BattleTactic>(
-                child: Icon(Icons.edit),
-                onSelected: (BattleTactic bt) => score.selectBattleTactic(
-                    chosenPlayer, bt, scoreTurn.turnNumber),
-                itemBuilder: (BuildContext context) {
-                  score.addPreviousBt(chosenPlayer, scoreTurn.turnNumber);
-                  List<BattleTactic> chosenList =
-                      chosenPlayer == selPlayer.PLAYER
-                          ? score.playerBattleTacticList
-                          : score.opponentBattleTacticList;
-                  return chosenList
-                      .map<PopupMenuItem<BattleTactic>>((bt) => PopupMenuItem(
-                            child: Text(bt.name[0]),
-                            value: bt,
-                          ))
-                      .toList();
-                }),
-            title: Text(chosenPlayer==selPlayer.PLAYER?scoreTurn.playerBattleTactic.name[0]:scoreTurn.opponentBattleTactic.name[0]),
-            trailing: Checkbox(
-              value: chosenPlayer==selPlayer.PLAYER?scoreTurn.playerBtDone:scoreTurn.opponentBtDone,
-              onChanged: (bool? value) =>score.setScoreBattleTactic(chosenPlayer,scoreTurn.turnNumber),
-            ),
+        ListTile(
+          leading: PopupMenuButton<BattleTactic>(
+              child: Icon(Icons.edit),
+              onSelected: (BattleTactic bt) => score.selectBattleTactic(
+                  chosenPlayer, bt, scoreTurn.turnNumber),
+              itemBuilder: (BuildContext context) {
+                score.addPreviousBt(chosenPlayer, scoreTurn.turnNumber);
+                List<BattleTactic> chosenList =
+                    chosenPlayer == selPlayer.PLAYER
+                        ? score.playerBattleTacticList
+                        : score.opponentBattleTacticList;
+                return chosenList
+                    .map<PopupMenuItem<BattleTactic>>((bt) => PopupMenuItem(
+                          child: Text(bt.name[0]),
+                          value: bt,
+                        ))
+                    .toList();
+              }),
+          title: Text(chosenPlayer==selPlayer.PLAYER?scoreTurn.playerBattleTactic.name[0]:scoreTurn.opponentBattleTactic.name[0]),
+          trailing: Checkbox(
+            value: chosenPlayer==selPlayer.PLAYER?scoreTurn.playerBtDone:scoreTurn.opponentBtDone,
+            onChanged: (bool? value) =>score.setScoreBattleTactic(chosenPlayer,scoreTurn.turnNumber),
           ),
         )
       ],
