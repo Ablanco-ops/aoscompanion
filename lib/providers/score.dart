@@ -24,14 +24,14 @@ class Score with ChangeNotifier {
     List<TurnScore> list = [];
     for (int i = 1; i <= turns; i++)
       list.add(
-          TurnScore(i, battleplan.objectiveList, battleplan.objectiveList));
+          TurnScore(i, battleplan.objectiveList));
     turnsScoreList = list;
     setInitialBattleTacticList((battleplan.index / 100).truncate());
   }
 
   void setScorePoint(int turn, int index) {
-    turnsScoreList[turn - 1].listScore[index] =
-        !turnsScoreList[turn - 1].listScore[index];
+    turnsScoreList[turn - 1].playerPrimaryScore[index] =
+        !turnsScoreList[turn - 1].playerPrimaryScore[index];
     notifyListeners();
   }
 

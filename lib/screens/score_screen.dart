@@ -1,6 +1,9 @@
+import 'dart:ui';
+
+import 'package:aoscompanion/decoration.dart';
 import 'package:aoscompanion/providers/pre_game_settings.dart';
 import 'package:aoscompanion/providers/score.dart';
-import 'package:aoscompanion/widgets/player_score_card.dart';
+import 'package:aoscompanion/widgets/score_card.dart';
 
 import '../common.dart';
 
@@ -15,26 +18,32 @@ class ScoreScreen extends StatelessWidget {
       appBar: AppBar(
           title: Text(
               "${settings.player.playerName} ${score.yourScore} - ${score.opponentScore} ${settings.opponent.playerName}")),
-      body: Card(
-        child: DefaultTabController(
-          length: score.turnsScoreList.length,
-          child: Column(
-            children: [
-              TabBar(
-                tabs: score.turnsScoreList.map((turn) => Tab(
-                  child: Text(
-                    (turn.turnNumber).toString(),
-                    style: TextStyle(color: Colors.black),
-                  ),
-                )).toList(),
-              ),
-              Container(
-                height: 300,
-                child: TabBarView(
-                  children: score.turnsScoreList.map((turn) => PlayerScoreCard(turn)).toList(),
+      body: Container(
+        margin: gameConfigScreenCardMargin,
+        child: Card(
+          elevation: 5,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10))),
+          child: DefaultTabController(
+            length: score.turnsScoreList.length,
+            child: Column(
+              children: [
+                TabBar(
+                  tabs: score.turnsScoreList.map((turn) => Tab(
+                    child: Text(
+                      (turn.turnNumber).toString(),
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  )).toList(),
                 ),
-              )
-            ],
+                Container(
+                  padding: const EdgeInsets.only(top:10,bottom: 10),
+                  height: 600,
+                  child: TabBarView(
+                    children: score.turnsScoreList.map((turn) => ScoreCard(turn)).toList(),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
