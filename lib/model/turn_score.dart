@@ -10,6 +10,7 @@ class TurnScore{
   bool playerBtDone=false;
   bool opponentBtDone=false;
   List<bool> playerPrimaryScore=[false,false,false,false];
+  List<bool> opponentPrimaryScore=[false,false,false,false];
 
   TurnScore(this.turnNumber, this.objectivesList);
 }

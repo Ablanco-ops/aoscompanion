@@ -17,7 +17,7 @@ class ScoreScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           title: Text(
-              "${settings.player.playerName} ${score.yourScore} - ${score.opponentScore} ${settings.opponent.playerName}")),
+              "${settings.player.playerName} ${score.playerScore} - ${score.opponentScore} ${settings.opponent.playerName}")),
       body: Container(
         margin: gameConfigScreenCardMargin,
         child: Card(

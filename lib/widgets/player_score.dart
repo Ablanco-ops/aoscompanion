@@ -1,4 +1,5 @@
 import 'package:aoscompanion/model/battle_tactic.dart';
+import 'package:aoscompanion/model/turn_objective.dart';
 import 'package:aoscompanion/model/turn_score.dart';
 import 'package:aoscompanion/providers/pre_game_settings.dart';
 import 'package:aoscompanion/providers/score.dart';
@@ -15,6 +16,16 @@ class PlayerScore extends StatelessWidget {
   Widget build(BuildContext context) {
     final score = Provider.of<Score>(context);
     final settings = Provider.of<PreGameSettings>(context);
+    bool getObjectiveDone(TurnObjective objective){
+      if(chosenPlayer==selPlayer.PLAYER){
+        return score.turnsScoreList[scoreTurn.turnNumber - 1]
+            .playerPrimaryScore[objective.index];
+      }
+      else{
+        return score.turnsScoreList[scoreTurn.turnNumber - 1]
+          .opponentPrimaryScore[objective.index];
+      }
+    }
     return Column(
       children: [
         Text(chosenPlayer == selPlayer.PLAYER
@@ -29,10 +40,9 @@ class PlayerScore extends StatelessWidget {
                         var turn = scoreTurn.turnNumber;
                         print(turn);
                         print(objective.index);
-                        score.setScorePoint(turn, objective.index);
+                        score.setScoreObjective(chosenPlayer,turn, objective.index);
                       },
-                      value: score.turnsScoreList[scoreTurn.turnNumber - 1]
-                          .playerPrimaryScore[objective.index],
+                      value: getObjectiveDone(objective),
                     ),
                   ))
               .toList(),
@@ -59,7 +69,7 @@ class PlayerScore extends StatelessWidget {
             title: Text(chosenPlayer==selPlayer.PLAYER?scoreTurn.playerBattleTactic.name[0]:scoreTurn.opponentBattleTactic.name[0]),
             trailing: Checkbox(
               value: chosenPlayer==selPlayer.PLAYER?scoreTurn.playerBtDone:scoreTurn.opponentBtDone,
-              onChanged: (bool? value) {},
+              onChanged: (bool? value) =>score.setScoreBattleTactic(chosenPlayer,scoreTurn.turnNumber),
             ),
           ),
         )
